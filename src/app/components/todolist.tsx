@@ -159,7 +159,7 @@ export default function TodoList() {
             onClick={addTask}
             className="bg-[#8b5e3c] hover:bg-[#6d472c] text-white px-5 py-2 rounded-full shadow-md transition-all"
           >
-            Tambahkan Tugas ✍️
+            Tambahkan Tugas 🖊️ 
           </button>
         </div>
         <ul className="space-y-4">
@@ -198,7 +198,7 @@ export default function TodoList() {
                         onClick={() => editTask(task)}
                         className="text-sm text-white px-2 py-1 bg-blue-600 hover:bg-blue-800 rounded"
                       >
-                        ✏️
+                        🖊️
                       </button>
                       <button
                         onClick={() => deleteTask(task.id)}
