@@ -75,15 +75,18 @@ export default function TodoList() {
     const { value: formValues } = await MySwal.fire({
       title: `<span style="font-family: Cinzel; color: #5e3b1d;">${title}</span>`,
       html:
-       `<input id="swal-input1" class="swal2-input" placeholder="Nama tugas" style="font-family: 'Georgia', serif; background-color: #fdf5e6; border: 1px solid #a67c52; color: #4b3b2a; padding: 10px; border-radius: 8px;" value="${task?.text || ''}">` +
-      `<input id="swal-input2" type="datetime-local" class="swal2-input" style="font-family: 'Georgia', serif; background-color: #fdf5e6; border: 1px solid #a67c52; color: #4b3b2a; padding: 10px; border-radius: 8px;" value="${task?.deadline || ''}">`,
+        `<input id="swal-input1" class="swal2-input" placeholder="Nama tugas" style="font-family: 'Georgia', serif; background-color: #fdf5e6; border: 1px solid #a67c52; color: #4b3b2a; padding: 10px; border-radius: 8px;" value="${task?.text || ''}">` +
+        `<input id="swal-input2" type="datetime-local" class="swal2-input" style="font-family: 'Georgia', serif; background-color: #fdf5e6; border: 1px solid #a67c52; color: #4b3b2a; padding: 10px; border-radius: 8px;" value="${task?.deadline || ''}">`,
       focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: 'Simpan',
       cancelButtonText: 'Batal',
       customClass: {
         popup: 'rounded-xl border border-[#b59b7c] shadow-lg',
-      },
+        confirmButton: 'bg-gradient-to-b from-[#a67c52] to-[#744d29] text-white px-4 py-2 rounded shadow-md hover:brightness-110 font-[Cinzel] mr-2',
+        cancelButton: 'bg-[#e5d8be] text-[#4b3b2a] px-4 py-2 rounded shadow hover:bg-[#d4c6ad] font-[Cinzel] ml-2',
+      },      
+      buttonsStyling: false,
       preConfirm: () => {
         const input1 = (document.getElementById('swal-input1') as HTMLInputElement)?.value;
         const input2 = (document.getElementById('swal-input2') as HTMLInputElement)?.value;
@@ -93,13 +96,14 @@ export default function TodoList() {
         return [input1, input2];
       },
     });
-
+  
     if (formValues && formValues[0] && formValues[1]) {
       return formValues as [string, string];
     }
-
+  
     return null;
   };
+  
 
   const addTask = async (): Promise<void> => {
     const formValues = await showTaskPopup('Tambahkan Tugas Baru');
